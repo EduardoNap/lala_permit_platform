@@ -1,0 +1,8 @@
+﻿
+reflex==0.8.24
+boto3
+SQLAlchemy>=2.0
+psycopg[binary]
+docling
+pymupdf
+psycopg2-binary

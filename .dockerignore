@@ -1,0 +1,13 @@
+.git
+__pycache__/
+.states/
+.web/
+node_modules/
+uploaded_files/
+*.db
+*.py[cod]
+.DS_Store
+.env
+assets/external/
+permiso.pdf
+prueba25.pdf

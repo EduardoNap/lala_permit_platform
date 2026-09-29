@@ -1,0 +1,165 @@
+/* ============================================================
+   FORCE LIGHT MODE
+   La app usa ThemeProvider (react-theme.js) que puede poner
+   class="dark" en <html> y .radix-themes cuando localStorage
+   o el sistema están en modo oscuro.
+   Este archivo lo contrarresta en todos los niveles.
+   ============================================================ */
+
+/* 1. Forzar color-scheme a light en el root.
+      !important es necesario para ganar al inline style que pone
+      ThemeProvider: document.documentElement.style.colorScheme = "dark" */
+:root,
+html {
+  color-scheme: light !important;
+}
+
+/* 2. Neutraliza CSS de modo oscuro basado en media query */
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: white !important;
+    color: #0f172a !important;
+    color-scheme: light !important;
+  }
+
+  /* Sonner toasts */
+  [data-sonner-toaster],
+  [data-sonner-toast] {
+    --background: white !important;
+    --foreground: #0f172a !important;
+    --border: #e2e8f0 !important;
+    background-color: white !important;
+    color: #0f172a !important;
+    border-color: #e2e8f0 !important;
+  }
+}
+
+/* ============================================================
+   3. Neutralizar class="dark" en <html> y .radix-themes
+      (añadida por ThemeProvider y RadixThemesColorModeProvider
+      cuando localStorage["theme"] = "dark"/"system")
+   ============================================================ */
+
+html.dark {
+  color-scheme: light !important;
+}
+
+/* Escala de grises de Radix: revertir dark → light */
+html.dark,
+.radix-themes.dark,
+.radix-themes.dark-theme {
+  --gray-1:  #fcfcfc !important;
+  --gray-2:  #f9f9f9 !important;
+  --gray-3:  #f0f0f0 !important;
+  --gray-4:  #e8e8e8 !important;
+  --gray-5:  #e0e0e0 !important;
+  --gray-6:  #d9d9d9 !important;
+  --gray-7:  #cecece !important;
+  --gray-8:  #bbbbbb !important;
+  --gray-9:  #8d8d8d !important;
+  --gray-10: #838383 !important;
+  --gray-11: #646464 !important;
+  --gray-12: #202020 !important;
+  /* Alpha grays (transparent black, correctos para fondo claro) */
+  --gray-a1:  #00000003 !important;
+  --gray-a2:  #00000006 !important;
+  --gray-a3:  #0000000f !important;
+  --gray-a4:  #00000017 !important;
+  --gray-a5:  #0000001f !important;
+  --gray-a6:  #00000026 !important;
+  --gray-a7:  #00000031 !important;
+  --gray-a8:  #00000044 !important;
+  --gray-a9:  #00000072 !important;
+  --gray-a10: #0000007c !important;
+  --gray-a11: #0000009b !important;
+  --gray-a12: #000000df !important;
+}
+
+/* Tokens semánticos de Radix: revertir dark → light */
+.radix-themes.dark,
+.radix-themes.dark-theme,
+html.dark .radix-themes {
+  color-scheme: light !important;
+  --color-background:         white !important;
+  --color-overlay:            rgba(0, 0, 0, 0.4) !important;
+  --color-panel-solid:        white !important;
+  --color-panel-translucent:  rgba(255, 255, 255, 0.7) !important;
+  --color-surface:            rgba(255, 255, 255, 0.85) !important;
+}
+
+/* ============================================================
+   4. Portales de Radix UI (dialogs, dropdowns, etc.)
+      Se renderizan fuera del árbol .radix-themes.
+   ============================================================ */
+
+.rt-BaseDialogContent,
+.rt-DialogContent,
+.rt-AlertDialogContent {
+  background-color: white !important;
+  color: #0f172a !important;
+  color-scheme: light;
+}
+
+.rt-AlertDialogTitle,
+.rt-AlertDialogDescription,
+.rt-DialogTitle,
+.rt-DialogDescription {
+  color: #0f172a !important;
+}
+
+.rt-SelectContent,
+.rt-DropdownMenuContent,
+.rt-PopoverContent,
+.rt-HoverCardContent,
+.rt-TooltipContent,
+.rt-ContextMenuContent {
+  background-color: white !important;
+  color: #0f172a !important;
+  color-scheme: light;
+}
+
+.rt-BaseDialogContent .rt-TextFieldRoot,
+.rt-BaseDialogContent .rt-TextAreaRoot,
+.rt-AlertDialogContent .rt-TextFieldRoot,
+.rt-AlertDialogContent .rt-TextAreaRoot {
+  background-color: white !important;
+  color-scheme: light;
+}
+
+.rt-BaseDialogContent input,
+.rt-BaseDialogContent textarea,
+.rt-AlertDialogContent input,
+.rt-AlertDialogContent textarea {
+  background-color: white !important;
+  color: #0f172a !important;
+  color-scheme: light;
+}
+
+/* ============================================================
+   5. Items de listas y Select trigger
+   ============================================================ */
+
+.rt-SelectItem,
+.rt-DropdownMenuItem,
+.rt-ContextMenuItem {
+  color: #0f172a !important;
+}
+
+.rt-SelectItem[data-highlighted],
+.rt-DropdownMenuItem[data-highlighted],
+.rt-ContextMenuItem[data-highlighted] {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.rt-SelectItem[data-state="checked"] {
+  background-color: #eff6ff !important;
+}
+
+.rt-SelectTrigger {
+  background-color: white !important;
+  color: #1f3a5f !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+}

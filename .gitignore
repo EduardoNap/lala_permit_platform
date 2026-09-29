@@ -1,0 +1,17 @@
+.web
+__pycache__/
+.states
+assets/external/
+*.py[cod]
+*.db
+.venv/
+venv/
+node_modules/
+.env
+.env.*
+!.env.example
+uploaded_files/
+tmp/
+*.pdf
+*.extracted.json
+.DS_Store
