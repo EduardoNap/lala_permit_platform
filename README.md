@@ -101,11 +101,6 @@ docker build -t lala-permit-platform .
 docker run --env-file .env -p 3000:3000 -p 8000:8000 lala-permit-platform
 ```
 
-## Notes
-
-- Developed as a team project for LALA's permit compliance area. All real permit documents, client data, and credentials have been removed from this repository. Configuration is supplied only through environment variables (see `.env.example`).
-- The UI is in Spanish, the language of its end users.
-
 ## Author
 
-- Eduardo Rey García Velasco
+- Eduardo García
